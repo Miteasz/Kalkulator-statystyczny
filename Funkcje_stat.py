@@ -1,10 +1,10 @@
 
-class kalk_stat:
+class KalkStat:
 
     def __init__(self):
         self.numbers = []
 
-    def liczby_uzytkownika(self):
+    def liczby_uzytkownika():
         try:
             numbers = input("Wprowadź liczby rozdzielone spacją: ").split()
             numbers = [int(number) for number in numbers]
@@ -15,13 +15,13 @@ class kalk_stat:
     numbers = liczby_uzytkownika()
     print(numbers)
 
-    def srednia_arytmetyczna(self,numbers):
+    def srednia_arytmetyczna(numbers):
         return sum(numbers) / len(numbers)
 
     average = srednia_arytmetyczna(numbers)
     print(round(float(average),2))
 
-    def srednia_geometryczna(self,numbers):
+    def srednia_geometryczna(numbers):
         dalej = 1
         for number in numbers:
             dalej *= number
@@ -31,7 +31,7 @@ class kalk_stat:
     sr_geo = srednia_geometryczna(numbers)
     print(round(float(sr_geo),2))
 
-    def obl_mediana(self,numbers):
+    def obl_mediana(numbers):
         numbers.sort()
         if len(numbers) % 2 == 0:
             mediana = (numbers[len(numbers) // 2 - 1] + numbers[len(numbers) // 2]) / 2
@@ -42,7 +42,7 @@ class kalk_stat:
     mediana = obl_mediana(numbers)
     print(mediana)
 
-    def obl_mode(self,numbers):
+    def obl_mode(numbers):
         licznik = {}
         for number in numbers:
             if number in licznik:
@@ -56,7 +56,7 @@ class kalk_stat:
     print(round(float(moda),2))
 
 
-    def obl_odchylenie_std(self,numbers):
+    def obl_odchylenie_std(numbers):
         n = len(numbers)
         srednia = sum(numbers) / n
         wariancja = sum((x - srednia) ** 2 for x in numbers) / n
