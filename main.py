@@ -1,5 +1,5 @@
-from Wybory import Start
 from Funkcje_stat import KalkStat
-Start.print_hi()
-KalkStat.liczby_uzytkownika()
-Start.wybierz_funkcje()
+
+
+name_asker = KalkStat()
+name = name_asker.print_hi()

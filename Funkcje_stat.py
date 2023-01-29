@@ -1,68 +1,71 @@
-
 class KalkStat:
 
     def __init__(self):
         self.numbers = []
+        self.name = ""
 
-    def liczby_uzytkownika():
+    def print_hi(self):
+        self.name = input("Podaj swoje imię: ")
+        print(f' Cześć, {self.name}')
+
+    def liczby_uzytkownika(self):
+        numbers = input("Wprowadź liczby rozdzielone spacją: ")
         try:
-            numbers = input("Wprowadź liczby rozdzielone spacją: ").split()
-            numbers = [int(number) for number in numbers]
-            return numbers
-        except:
-            print("Upewnij się, że podałeś liczby i rozdzieliłeś je przecinkami")
+            self.numbers = [int(number) for number in numbers.split()]
+        except ValueError:
+            print("Upewnij się, że podałeś liczby i rozdzieliłeś je spacjami")
 
-    numbers = liczby_uzytkownika()
-    print(numbers)
+    def srednia_arytmetyczna(self):
+        return sum(self.numbers) / len(self.numbers)
 
-    def srednia_arytmetyczna(numbers):
-        return sum(numbers) / len(numbers)
-
-    average = srednia_arytmetyczna(numbers)
-    print(round(float(average),2))
-
-    def srednia_geometryczna(numbers):
+    def srednia_geometryczna(self):
         dalej = 1
-        for number in numbers:
+        for number in self.numbers:
             dalej *= number
-        sr_geo = dalej ** (1/len(numbers))
+        sr_geo = dalej ** (1/len(self.numbers))
         return sr_geo
 
-    sr_geo = srednia_geometryczna(numbers)
-    print(round(float(sr_geo),2))
-
-    def obl_mediana(numbers):
-        numbers.sort()
-        if len(numbers) % 2 == 0:
-            mediana = (numbers[len(numbers) // 2 - 1] + numbers[len(numbers) // 2]) / 2
+    def obl_mediana(self):
+        self.numbers.sort()
+        if len(self.numbers) % 2 == 0:
+            mediana = (self.numbers[len(self.numbers) // 2 - 1] + self.numbers[len(self.numbers) // 2]) / 2
         else:
-            mediana = numbers[len(numbers) // 2]
+            mediana = self.numbers[len(self.numbers) // 2]
         return mediana
 
-    mediana = obl_mediana(numbers)
-    print(mediana)
-
-    def obl_mode(numbers):
+    def obl_mode(self):
         licznik = {}
-        for number in numbers:
-            if number in licznik:
-                licznik[number] += 1
-            else:
-                licznik[number] = 1
+        for number in self.numbers:
+            licznik[number] = licznik.get(number, 0) + 1
         moda = max(licznik, key=licznik.get)
         return moda
 
-    moda = obl_mode(numbers)
-    print(round(float(moda),2))
-
-
-    def obl_odchylenie_std(numbers):
-        n = len(numbers)
-        srednia = sum(numbers) / n
-        wariancja = sum((x - srednia) ** 2 for x in numbers) / n
+    def obl_odchylenie_std(self):
+        n = len(self.numbers)
+        srednia = sum(self.numbers) / n
+        wariancja = sum((x - srednia) ** 2 for x in self.numbers) / n
         odchylenie_standardowe = wariancja ** 0.5
         return odchylenie_standardowe
 
-    odchylenie_standardowe = obl_odchylenie_std(numbers)
-    print(round(float(odchylenie_standardowe),2))
+    def wybierz_funkcje(self):
+        print('1. Odchylenie standardowe')
+        print('2. Moda')
+        print('3. Mediana')
+        print('4. Średnia geometryczna')
+        print('5. Średnia arytmetyczna')
+        wybor = int(input("Wybierz funkcję (podaj numer): "))
+        if wybor == 1:
+            print(self.obl_odchylenie_std())
+        elif wybor == 2:
+            print(self.obl_mode())
+        elif wybor == 3:
+            print(self.obl_mediana())
+        elif wybor == 4:
+            print(self.srednia_geometry())
+        elif wybor == 5:
+            print(self.srednia_arytmetyczna())
+        else:
+            print("Nieprawidłowy wybór. Proszę wybrać numer od 1 do 5.")
+
+
 
